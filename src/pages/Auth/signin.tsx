@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Header from "../../components/Header/header";
 import Input from "../../components/Inputs/input";
 import Label from "../../components/Label/label";
@@ -7,8 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SigninSchema, SigninType } from "../../components/schema/signinSchema";
 import { UserLogin } from "../../services/userService";
 import Cookies from "js-cookie"
+import { useState } from "react";
 
 export default function SignIn() {
+  const [erro, setErro] = useState(false)
   const {
     register,
     reset,
@@ -19,9 +21,12 @@ export default function SignIn() {
   async function sendForm(data: SigninType) {
     const response = await UserLogin(data);
     if (!response) {
+      setErro(true)
       return console.log({ message: "Erro ao iniciar sessão" });
     }
+    setErro(false)
     Cookies.set("token", response.data)
+    location.href = ("/tasks")
     reset();
   }
 
@@ -68,6 +73,11 @@ export default function SignIn() {
                 Sign In
               </button>
             </span>
+            {erro && (
+                <span className="text-[12.5px] text-red-600">
+                  User or password not found !
+                </span>
+              )}
           </fieldset>
           <Link to={"/forgout-password"} className="text-sm text-azul-primary underline">
             Forgout your password?

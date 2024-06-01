@@ -9,6 +9,9 @@ import HomePage from "./pages/Home/homePage.tsx";
 import VerifyEmail from "./pages/Auth/verifyEmail.tsx";
 import ForgoutPassword from "./pages/redefinePassword/forgoutPassword.tsx";
 import RedefinePassword from "./pages/redefinePassword/redefinePassword.tsx";
+import UserProvider from "./context/UserContext.tsx";
+import Todolist from "./pages/Todolist/todolist.tsx";
+import Cookies from "js-cookie";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/auth/signin",
     element: <SignIn />,
+  },
+  {
+    path: "/tasks",
+    element: Cookies.get("token") ? <Todolist />:<SignIn/>,
   },
   {
     path: "/signup",
@@ -42,6 +49,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );

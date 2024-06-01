@@ -3,8 +3,8 @@ import ButtonSignIn from "../Button/signIn";
 import ButtonSignUp from "../Button/signup";
 
 interface types {
-  signupPage: boolean;
-  signinPage: boolean;
+  signupPage?: boolean;
+  signinPage?: boolean;
 }
 
 export default function Header(props: types) {

@@ -8,12 +8,16 @@ import {
   RedefinePasswordSchema,
   RedefinePasswordType,
 } from "../../components/schema/redefinePasswordSchema";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Cookies from "js-cookie";
 import Label from "../../components/Label/label";
+import { redefinePassword } from "../../services/userService";
 
 export default function RedefinePassword() {
+  const navigate = useNavigate();
   const [formPassword, setFormPassword] = useState(false);
+  const [getErro, setErro] = useState(false);
 
   const {
     register: registerOTP,
@@ -31,18 +35,25 @@ export default function RedefinePassword() {
     resolver: zodResolver(RedefinePasswordSchema),
   });
 
-  async function sendForm(code: CodeOTPType) {
-    if (code) {
-      console.log(code);
-      setFormPassword(true);
-      resetOTP()
-    }
+  function sendForm(data: CodeOTPType) {
+    Cookies.set("code", data.code, { expires: 1 });
+    setFormPassword(true);
+    resetOTP();
   }
 
-  async function submit(data:RedefinePasswordType){
-    console.log(data)
-    setFormPassword(false)
-    reset()
+  async function submit(data: RedefinePasswordType) {
+    const response = await redefinePassword(data);
+    if (!response) {
+      setFormPassword(false);
+      reset();
+      setErro(true);
+      return console.log("Falha ao redefinir senha!");
+    }
+    console.log(response);
+    setErro(false);
+    navigate("/auth/signin");
+    setFormPassword(false);
+    reset();
   }
 
   return (
@@ -50,9 +61,12 @@ export default function RedefinePassword() {
       <Header signupPage={false} signinPage={false} />
       <section className="flex items-center justify-center w-full h-screen bg-gradient-to-b from-gradient-start via-gradient-mid to-gradient-end">
         {formPassword ? (
-          <form onSubmit={handleSubmit(submit)} className="bg-[#d9d9d942] w-[420px] max-sm:w-[20rem] p-4 rounded-3xl">
-             <fieldset className="flex flex-col items-center gap-2">
-             <span className="flex flex-col w-full ">
+          <form
+            onSubmit={handleSubmit(submit)}
+            className="bg-[#d9d9d942] w-[420px] max-sm:w-[20rem] p-4 rounded-3xl"
+          >
+            <fieldset className="flex flex-col items-center gap-2">
+              <span className="flex flex-col w-full ">
                 <Label id="password" text="Password" />
                 <Input
                   register={register}
@@ -88,7 +102,7 @@ export default function RedefinePassword() {
                   Submit
                 </button>
               </span>
-            </fieldset>  
+            </fieldset>
           </form>
         ) : (
           <form
@@ -112,6 +126,11 @@ export default function RedefinePassword() {
               {erro.code && (
                 <span className="leading-[8px] text-[12.5px] text-red-600">
                   {erro.code.message}
+                </span>
+              )}
+              {getErro && (
+                <span className="leading-[8px] text-[12.5px] text-red-600">
+                  Código de redefinição inválido, tente novamente!
                 </span>
               )}
               <Link
