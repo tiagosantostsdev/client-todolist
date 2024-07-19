@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { TaskType } from "../components/schema/tasksSchema";
 
-const baseURL: string = String(import.meta.env.VITE_BASE_URL);
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const CreateTask = (data: TaskType) => {
   const response: any = axios

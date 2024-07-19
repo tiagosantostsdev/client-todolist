@@ -4,7 +4,7 @@ import { SignUpType } from "../components/schema/signupSchema";
 import { RedefinePasswordType } from "../components/schema/redefinePasswordSchema";
 import Cookies from "js-cookie";
 
-const baseURL: string = String(import.meta.env.VITE_BASE_URL);
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const CreateUser = (data: SignUpType) => {
   const username: string = `${data.firstName} ${data.lastName}`
