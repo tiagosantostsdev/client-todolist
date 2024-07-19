@@ -11,7 +11,6 @@ import ForgoutPassword from "./pages/redefinePassword/forgoutPassword.tsx";
 import RedefinePassword from "./pages/redefinePassword/redefinePassword.tsx";
 import UserProvider from "./context/UserContext.tsx";
 import Todolist from "./pages/Todolist/todolist.tsx";
-import Cookies from "js-cookie";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/tasks",
-    element: Cookies.get("token") ? <Todolist />:<SignIn/>,
+    element:  <Todolist />,
   },
   {
     path: "/signup",
