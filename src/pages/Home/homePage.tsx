@@ -20,7 +20,7 @@ export default function HomePage() {
             </div>
             <div className="flex flex-col items-center gap-2">
               <p className="text-white">Follow me!</p>
-              <span className="flex text-white gap-12">
+              <span className="flex flex-wrap justify-center text-white gap-12">
                 <a
                   href="https://www.facebook.com/profile.php?id=61558483055994"
                   target="blank"

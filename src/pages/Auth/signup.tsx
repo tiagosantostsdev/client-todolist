@@ -38,7 +38,7 @@ export default function SignUp() {
   return (
     <>
       <Header signupPage={true} signinPage={false} />
-      <section className="font-inter flex items-center justify-center w-full h-screen bg-gradient-to-b from-gradient-start via-gradient-mid to-gradient-end">
+      <section className="font-inter flex items-center justify-center w-dvw h-dvh bg-gradient-to-b from-gradient-start via-gradient-mid to-gradient-end">
         {verify ? (
           <div className="flex flex-col items-center justify-center bg-[#d9d9d942] w-[420px] max-sm:w-[20rem] p-4 rounded-3xl">
             <span
@@ -62,7 +62,7 @@ export default function SignUp() {
             onSubmit={handleSubmit(sendForm)}
             className="bg-[#d9d9d942] w-[420px] max-sm:w-[20rem] p-4 rounded-3xl"
           >
-            <fieldset className="grid grid-cols-2 gap-2">
+            <fieldset className="grid grid-cols-2 gap-2 w-full">
               <legend className="text-xl text-center text-white mb-3">
                 Create account
               </legend>

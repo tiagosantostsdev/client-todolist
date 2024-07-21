@@ -14,7 +14,7 @@ export default function Header(props: types) {
       className={`fixed w-full pl-[50px] pr-[50px] p-[15px] max-sm:pr-[10px] max-sm:pl-[10px]`}
     >
       <nav className="flex justify-between">
-        <div className="font-inter text-xl select-none text-white">
+        <div className="font-inter text-[1rem] select-none text-white">
           <span onClick={() => navigate("/")}>TodoList</span>
         </div>
         <div className="flex gap-[19px]">
