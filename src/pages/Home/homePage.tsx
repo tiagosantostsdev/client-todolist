@@ -1,3 +1,4 @@
+import { BsGithub } from "react-icons/bs"; 
 import { FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
 import ButtonSignIn from "../../components/Button/signIn";
 import Header from "../../components/Header/header";
@@ -20,15 +21,24 @@ export default function HomePage() {
             <div className="flex flex-col items-center gap-2">
               <p className="text-white">Follow me!</p>
               <span className="flex text-white gap-12">
-                <a href="https://www.facebook.com/profile.php?id=61558483055994" target="blank">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61558483055994"
+                  target="blank"
+                >
                   <FaFacebook className="text-[#3B5998]" size={40} />
                 </a>
-                <a href="#" target="blank">
+                <a href="https://www.linkedin.com/in/tiagosantostsdev" target="blank">
                   <FaLinkedin className="text-[#0E76A8]" size={40} />
                 </a>
-                <a href="#" target="_blank">
+                <a href="https://www.instagram.com/tiagosantostsdev/" target="_blank">
                   <FaInstagram
                     className="rounded-[50%] bg-gradient-to-b from-orange-500 to-red-900"
+                    size={40}
+                  />
+                </a>
+                <a href="https://github.com/tiagosantostsdev" target="_blank">
+                  <BsGithub 
+                    className="rounded-[50%]"
                     size={40}
                   />
                 </a>

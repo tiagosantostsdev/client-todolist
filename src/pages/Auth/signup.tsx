@@ -9,10 +9,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema, SignUpType } from "../../components/schema/signupSchema";
 import { CreateUser } from "../../services/userService";
 import { useState } from "react";
+import Load from "../../components/Load/load";
 
 export default function SignUp() {
   const navigate = useNavigate();
   const [verify, setVerify] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     reset,
@@ -21,12 +23,15 @@ export default function SignUp() {
   } = useForm<SignUpType>({ resolver: zodResolver(SignUpSchema) });
 
   async function sendForm(data: SignUpType) {
+    setIsLoading(true);
     const response = await CreateUser(data);
     if (!response) {
+      setIsLoading(false);
       return console.log("Falha ao adicionar novo usuário!");
     }
     console.log({ message: "Novo usuário adicionado" });
     reset();
+    setIsLoading(false);
     setVerify(true);
   }
 
@@ -50,6 +55,8 @@ export default function SignUp() {
               Please verify your email
             </p>
           </div>
+        ) : isLoading ? (
+          <Load />
         ) : (
           <form
             onSubmit={handleSubmit(sendForm)}
@@ -103,7 +110,13 @@ export default function SignUp() {
               </span>
               <span className="flex flex-col w-full ">
                 <Label id="date" text="Date-of-birth" />
-                <Input register={register} name="date" type="date" id="date" max={"2010-12-31"}/>
+                <Input
+                  register={register}
+                  name="date"
+                  type="date"
+                  id="date"
+                  max={"2010-12-31"}
+                />
                 {errors.date && (
                   <span className="text-[12.5px] text-red-600">
                     {errors.date?.message}
