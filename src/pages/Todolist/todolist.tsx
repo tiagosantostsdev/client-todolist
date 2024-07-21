@@ -77,10 +77,10 @@ export default function Todolist() {
         className={`w-full pl-[50px] pr-[50px] p-[15px] max-sm:pr-[10px] max-sm:pl-[10px]`}
       >
         <nav className="flex justify-between">
-          <div className="font-inter text-xl select-none text-white">
+          <div className="font-inter text-[1.2rem] select-none text-white">
             <span>TodoList</span>
           </div>
-          <div className="flex text-xl justify-between items-center gap-[0.5rem]">
+          <div className="flex text-[1.2rem] justify-between items-center gap-[0.5rem]">
             <FaSignOutAlt
               className="text-red-500 cursor-pointer"
               onClick={signout}
