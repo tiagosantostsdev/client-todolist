@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
+******* SAUDAÇÕES ********
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+API TODOLIST 
 
-Currently, two official plugins are available:
+Está é o front-end desenvolvida para a api da lista de tarefas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+TECNÓLOGIAS
 
-## Expanding the ESLint configuration
+1. react
+2. ReactJs
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+INSTALAÇÃO
+Passos para instalar o projeto:
 
-- Configure the top-level `parserOptions` property like this:
+git clone https://github.com/tiagosantostsdev/client-todolist
+cd repositorio
+npm install
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+USO
+Como rodar o projeto:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+npm run dev
+
+Contribuição
+Como contribuir para o projeto:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Faça push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+Licença
+
+Distribuído sob a licença ISC.
+
+CONTACTOS
+
+email: tiagosantostsdev@gmail.com
+linkedin: www.linkedin.com/in/tiagosantostsdev
+facebook: https://www.facebook.com/profile.php?id=61558483055994
