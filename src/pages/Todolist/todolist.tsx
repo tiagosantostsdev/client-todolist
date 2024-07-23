@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TaskSchema, TaskType } from "../../components/schema/tasksSchema";
 import { CreateTask, GetTasks } from "../../services/tasksService";
 import Card from "../../components/Card/card";
+import img from "../../assets/lupa-em-fundo-checado.png";
 
 export default function Todolist() {
   const { user, setUser } = useContext(UserContext);
@@ -125,17 +126,30 @@ export default function Todolist() {
               </span>
             )}
           </form>
-          <div className="fixed top-32 overflow-y-auto flex flex-col flex-nowrap items-center gap-2 p-1 pt-2 pb-2 mt-4 rounded max-h-[30rem] max-sm:max-h-[28rem] 2xl:max-h-[40rem] max w-3/4 md:w-[50%] bg-gray-600 ">
-            {data.map((item: any) => (
-              <Card
-                key={item._id}
-                task={item.task}
-                id={item._id}
-                getTasks={getTasks}
-                status={item.status}
+
+          {data.length == 0 ? (
+            <div className="grid place-items-center fixed top-36">
+              <p className="text-white">A sua lista de terefas está vazia!</p>
+              <img
+                src={img}
+                width={300}
+                height={10}
+                alt="imagem de uma lista de tarefas vazia"
               />
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="fixed top-32 overflow-y-auto flex flex-col flex-nowrap items-center gap-2 p-1 pt-2 pb-2 mt-4 rounded max-h-[30rem] max-sm:max-h-[28rem] 2xl:max-h-[40rem] max w-3/4 md:w-[50%] bg-gray-600 ">
+              {data.map((item: any) => (
+                <Card
+                  key={item._id}
+                  task={item.task}
+                  id={item._id}
+                  getTasks={getTasks}
+                  status={item.status}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </main>
