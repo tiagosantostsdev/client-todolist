@@ -39,14 +39,14 @@ export default function Todolist() {
   const sendForm = useCallback(
     async (data: TaskType, event: any) => {
       event.preventDefault();
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await CreateTask(data);
       if (!response) {
         return console.log({ message: "Falha ao adicionar tarefa" });
       }
       console.log(response);
       reset();
-      setIsLoading(false)
+      setIsLoading(false);
       return setIsSubmiting(!isSubmiting);
     },
     [isSubmiting]
@@ -72,7 +72,7 @@ export default function Todolist() {
   }, [sendForm]);
 
   return (
-    <main className="h-dvh w-dvw bg-gradient-to-b from-gradient-start via-gradient-mid to-gradient-end">
+    <main className="h-dvh w-full bg-gradient-to-b from-gradient-start via-gradient-mid to-gradient-end">
       <header
         className={`w-full pl-[50px] pr-[50px] p-[15px] max-sm:pr-[10px] max-sm:pl-[10px]`}
       >
@@ -91,7 +91,7 @@ export default function Todolist() {
           </div>
         </nav>
       </header>
-      <section className="flex flex-col items-center bg-gray-500 w-full h-[91.5%]">
+      <section className="flex flex-col items-center bg-gray-500 w-full h-[91.4%]">
         <div className="flex flex-col items-center w-3/4 md:w-[50%] p-1">
           <form
             action="post"
@@ -116,14 +116,16 @@ export default function Todolist() {
                 />
               </button>
             </span>
-            {isLoading && <span className="animate-pulse text-white">Loading . . .</span>}
+            {isLoading && (
+              <span className="animate-pulse text-white">Loading . . .</span>
+            )}
             {errors.task && (
               <span className="text-sm text-red-700 leading-4">
                 {errors.task.message}
               </span>
             )}
           </form>
-          <div className="fixed top-32 overflow-y-auto flex flex-col flex-nowrap items-center gap-2 p-1 pt-2 pb-2 mt-4 rounded max-h-[42rem] w-3/4 md:w-[50%] h-auto  bg-gray-600 ">
+          <div className="fixed top-32 overflow-y-auto flex flex-col flex-nowrap items-center gap-2 p-1 pt-2 pb-2 mt-4 rounded max-h-[30rem] max-sm:max-h-[28rem] 2xl:max-h-[40rem] max w-3/4 md:w-[50%] bg-gray-600 ">
             {data.map((item: any) => (
               <Card
                 key={item._id}
