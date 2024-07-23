@@ -13,11 +13,13 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Label from "../../components/Label/label";
 import { redefinePassword } from "../../services/userService";
+import Load from "../../components/Load/load";
 
 export default function RedefinePassword() {
   const navigate = useNavigate();
   const [formPassword, setFormPassword] = useState(false);
   const [getErro, setErro] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register: registerOTP,
@@ -42,10 +44,12 @@ export default function RedefinePassword() {
   }
 
   async function submit(data: RedefinePasswordType) {
+    setIsLoading(true);
     const response = await redefinePassword(data);
     if (!response) {
       setFormPassword(false);
       reset();
+      setIsLoading(false);
       setErro(true);
       return console.log("Falha ao redefinir senha!");
     }
@@ -60,8 +64,8 @@ export default function RedefinePassword() {
     <>
       <Header signupPage={false} signinPage={false} />
       <section className="flex items-center justify-center w-full h-screen bg-gradient-to-b from-gradient-start via-gradient-mid to-gradient-end">
-        {formPassword ? (
-          <form
+        {formPassword ? ( !isLoading ? 
+          (<form
             onSubmit={handleSubmit(submit)}
             className="bg-[#d9d9d942] w-[420px] max-sm:w-[20rem] p-4 rounded-3xl"
           >
@@ -103,7 +107,7 @@ export default function RedefinePassword() {
                 </button>
               </span>
             </fieldset>
-          </form>
+          </form>) : <Load/>
         ) : (
           <form
             onSubmit={handleSubmitOTP(sendForm)}
